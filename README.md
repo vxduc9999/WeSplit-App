@@ -30,4 +30,4 @@
 
 5. UpdateJourneyScreen
 - Cập nhật thông tin của chuyến đi: các thành viên, các hình ảnh, các mốc lộ trình, các khoản thu chi. Chú ý nếu có người ứng trước cần báo cáo ai phải trả cho ai bao nhiêu tiền.
-- #Link demo: 
+- #Link demo: https://www.youtube.com/watch?v=JcxIwT9aILg&feature=youtu.be
