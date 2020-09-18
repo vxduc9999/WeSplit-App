@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="Pizzaria1.UserControlEscolha"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pizzaria1"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <local:ImagePatchRelativeToAbsoluteConverter x:Key="pathConverter" />
+    </UserControl.Resources>
+
+    <Grid x:Name="_escolha" Height="700" Width="1100">
+        <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromTop, Duration=0:0:0.8}">
+            <Grid >
+                <Canvas Name="pagingInfoStackPanel" DockPanel.Dock="Bottom" Height="50" HorizontalAlignment="Center" Margin="0,0,30,30" VerticalAlignment="Bottom" Panel.ZIndex="99">
+                    <StackPanel Name="Bot" Margin="-10,0,0,0" Height="50" Orientation="Horizontal">
+                        <Button
+                    Style="{StaticResource MaterialDesignFloatingActionButton}"
+                    Height="35" Width="35" Margin="10,5"
+                    Name="Prev"
+                    Click="Prev_Click">
+                            <Image Source="/Assets/left.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Button>
+                        <Button
+                    Style="{StaticResource MaterialDesignFloatingActionButton}"
+                    Height="35" Width="35"
+                    Margin="20,0"
+                    Name="Next"
+                    Click="Next_Click">
+                            <Image Source="/Assets/right.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Button>
+                    </StackPanel>
+                </Canvas>
+                <Grid Margin="0,30,-100,-10">
+                    <Grid.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" ShadowDepth="1"/>
+                    </Grid.Effect>
+                    <Border CornerRadius="24" Background="#FFF3F3F3" HorizontalAlignment="Center" VerticalAlignment="Top" Panel.ZIndex="99" Width="360" Height="45">
+                        <StackPanel  Orientation="Horizontal">
+                            <TextBox Margin="15,7" x:Name="SearchTexbox" materialDesign:HintAssist.Hint="Search for here..."
+                                 Foreground="Gray" Width="295" FontSize="16" BorderThickness="0" Padding="0,0,0,1"/>
+                            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Width="60" Background="{x:Null}" BorderBrush="{x:Null}"
+                                BorderThickness="0" Height="50" Click="ButtonSearch_Click" Margin="-20,0,0,0">
+                                <materialDesign:PackIcon Kind="Magnify" Cursor="Arrow" Foreground="#FF2196F3" Height="35" Width="30" 
+                                      HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                    <ListView x:Name="dataListView" HorizontalAlignment="Center" MouseLeftButtonUp="dataListview_MouseLeftButtonUp"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Margin="0,88,0,0">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel></WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border x:Name="Item" HorizontalAlignment="Center" Height="430" Width="310" CornerRadius="30" 
+                                        Margin="5,0,5,0" Background="#FFF3F3F3">
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Height="430" Width="310">
+                                        <Border Height="300" Width="310" CornerRadius="30,30,0,0">
+                                            <Border.Background>
+                                                <ImageBrush ImageSource="{Binding Picture, Converter={StaticResource pathConverter}}"
+                                                            RenderOptions.BitmapScalingMode="HighQuality" Stretch="UniformToFill"/>
+                                            </Border.Background>
+                                            <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10">
+                                                <Border Width="40" Height="40" CornerRadius="40" Background="White">
+                                                    <Button Name="MapCheck" Click="flag_Click" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                                            Background="{x:Null}" BorderBrush="{x:Null}"  HorizontalContentAlignment="Center" 
+                                                            VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                                                        <Image Source="{Binding Icon}" Height="30" Width="30"
+                                                                RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                                    </Button>
+                                                </Border>
+                                            </WrapPanel>
+                                        </Border>
+                                        <TextBlock TextAlignment="Left" Padding="7" FontSize="20" FontWeight="DemiBold" Foreground="#FFC00000"
+                                       FontFamily="Showcard Gothic" Text="{Binding Name}" />
+                                        <TextBlock Opacity="2" Foreground="Black" FontFamily="Champagne &amp; Limousines" Padding="10,-5"
+                                                           Text="{Binding Introduce}"
+                                                           HorizontalAlignment="Center" TextWrapping="Wrap" Width="310"
+                                                           Height="80" FontSize="14" TextTrimming="CharacterEllipsis">
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </materialDesign:TransitioningContent>
+    </Grid>
+</UserControl>

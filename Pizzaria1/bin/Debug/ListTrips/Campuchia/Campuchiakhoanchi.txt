@@ -1,0 +1,12 @@
+﻿Chỗ ở
+880000
+Xe di chuyển
+1400000
+Tàu đi đảo
+540000
+Vé tham quan
+900000
+Grab đi lại trong thành phố
+750000
+Ăn uống
+1900000
